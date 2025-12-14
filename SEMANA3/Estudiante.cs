@@ -1,39 +1,30 @@
 using System;
 
-namespace RegistroEstudiante
+// Clase Estudiante
+// Esta clase representa a un estudiante y almacena sus datos personales
+// Incluye un arreglo (array) para guardar tres números de teléfono
+public class Estudiante
 {
-    class Estudiante
+    // Identificación del estudiante
+    public string Id { get; set; }
+
+    // Nombres del estudiante
+    public string Nombres { get; set; }
+
+    // Apellidos del estudiante
+    public string Apellidos { get; set; }
+
+    // Dirección de domicilio del estudiante
+    public string Direccion { get; set; }
+
+    // Arreglo de tipo string para almacenar tres números de teléfono
+    public string[] Telefonos { get; set; }
+
+    // Constructor de la clase
+    // Inicializa el arreglo de teléfonos con tamaño 3
+    public Estudiante()
     {
-        public int Id { get; set; }
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public string Direccion { get; set; }
-        public string[] Telefonos { get; set; }
-
-        // Constructor
-        public Estudiante()
-        {
-            Nombres = "";
-            Apellidos = "";
-            Direccion = "";
-            Telefonos = new string[3];
-        }
-
-        public void MostrarDatos()
-        {
-            Console.WriteLine("\n--- DATOS DEL ESTUDIANTE ---");
-            Console.WriteLine($"ID: {Id}");
-            Console.WriteLine($"Nombres: {Nombres}");
-            Console.WriteLine($"Apellidos: {Apellidos}");
-            Console.WriteLine($"Dirección: {Direccion}");
-
-            for (int i = 0; i < Telefonos.Length; i++)
-            {
-                Console.WriteLine($"Teléfono {i + 1}: {Telefonos[i]}");
-            }
-        }
+        Telefonos = new string[3];
     }
 }
-
-
 
