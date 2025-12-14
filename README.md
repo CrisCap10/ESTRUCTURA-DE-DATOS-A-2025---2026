@@ -10,5 +10,5 @@ Repositorio destinado a almacenar las tareas y prácticas de la asignatura
 Cada carpeta corresponde a un proyecto desarrollado en C# (.NET).
 
 ## 👨‍🎓 Estudiante
-- Nombre: Cris Cap10
+- Nombre: Cristhian Chacha
 - Universidad Estatal Amazónica
