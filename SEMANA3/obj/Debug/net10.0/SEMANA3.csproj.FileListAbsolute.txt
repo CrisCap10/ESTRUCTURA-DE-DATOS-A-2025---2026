@@ -1,0 +1,14 @@
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\obj\Debug\net10.0\SEMANA3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\obj\Debug\net10.0\SEMANA3.AssemblyInfoInputs.cache
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\obj\Debug\net10.0\SEMANA3.AssemblyInfo.cs
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\obj\Debug\net10.0\SEMANA3.csproj.CoreCompileInputs.cache
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\bin\Debug\net10.0\SEMANA3.exe
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\bin\Debug\net10.0\SEMANA3.deps.json
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\bin\Debug\net10.0\SEMANA3.runtimeconfig.json
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\bin\Debug\net10.0\SEMANA3.dll
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\bin\Debug\net10.0\SEMANA3.pdb
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\obj\Debug\net10.0\SEMANA3.dll
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\obj\Debug\net10.0\refint\SEMANA3.dll
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\obj\Debug\net10.0\SEMANA3.pdb
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\obj\Debug\net10.0\SEMANA3.genruntimeconfig.cache
+C:\Users\USER\OneDrive - Universidad Estatal Amazónica\Documentos\TAREAS DE ED\SEMANA3\obj\Debug\net10.0\ref\SEMANA3.dll
