@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SEMANA_5 // Debe coincidir exactamente con el csproj
+namespace SEMANA_5
 {
     public class LogicaEjercicios
     {
@@ -41,7 +41,8 @@ namespace SEMANA_5 // Debe coincidir exactamente con el csproj
             Console.WriteLine("Introduce 6 números ganadores:");
             for (int i = 0; i < 6; i++) {
                 Console.Write($"N{i+1}: ");
-                numeros.Add(int.Parse(Console.ReadLine()));
+                string entrada = Console.ReadLine();
+                if(int.TryParse(entrada, out int n)) numeros.Add(n);
             }
             numeros.Sort();
             Console.WriteLine("Ordenados: " + string.Join(", ", numeros));
@@ -52,7 +53,9 @@ namespace SEMANA_5 // Debe coincidir exactamente con el csproj
         {
             List<int> lista = Enumerable.Range(1, 10).ToList();
             lista.Reverse();
-            Console.WriteLine("Orden inverso: " + string.Join(", ", lista));
+            Console.WriteLine("Orden inverso (1 al 10): " + string.Join(", ", lista));
         }
     }
 }
+
+
