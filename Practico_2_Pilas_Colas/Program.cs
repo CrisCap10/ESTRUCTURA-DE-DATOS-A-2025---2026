@@ -20,22 +20,23 @@ namespace Practico_2_Pilas_Colas
     {
         static void Main(string[] args)
         {
-            // Se crea la cola para simular el orden de llegada
+            // Cola para almacenar a las personas según su llegada (FIFO)
             Queue<Persona> colaPersonas = new Queue<Persona>();
 
-            // Registro de 30 personas
-            for (int i = 1; i <= 30; i++)
-            {
-                colaPersonas.Enqueue(new Persona("Persona " + i));
-            }
-
-            Console.WriteLine("Asignación de asientos en orden de llegada:\n");
-
             int asiento = 1;
+            int limiteAsientos = 30;
 
-            // Asignación de asientos respetando FIFO
-            while (colaPersonas.Count > 0)
+            Console.WriteLine("ASIGNACIÓN DE ASIENTOS (MÁXIMO 30)");
+            Console.WriteLine("Presione cualquier tecla para ingresar una persona...\n");
+
+            // Mientras no se alcance el límite de asientos
+            while (asiento <= limiteAsientos)
             {
+                Console.ReadKey(true); // Espera que el operador presione una tecla
+
+                Persona nuevaPersona = new Persona("Persona " + asiento);
+                colaPersonas.Enqueue(nuevaPersona);
+
                 Persona personaActual = colaPersonas.Dequeue();
                 personaActual.NumeroAsiento = asiento;
 
@@ -46,12 +47,10 @@ namespace Practico_2_Pilas_Colas
                 asiento++;
             }
 
-            Console.WriteLine("\nTodos los asientos han sido asignados correctamente.");
+            Console.WriteLine("\n⚠️ Límite de 30 asientos alcanzado.");
+            Console.WriteLine("No se pueden asignar más asientos.");
             Console.ReadKey();
         }
     }
 }
-
-
-
 
