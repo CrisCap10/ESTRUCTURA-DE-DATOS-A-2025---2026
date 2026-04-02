@@ -1,0 +1,6 @@
+graph G {
+    "Ana" -- "Juan";
+    "Ana" -- "Maria";
+    "Juan" -- "Pedro";
+    "Maria" -- "Luis";
+}

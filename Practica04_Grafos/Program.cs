@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Diagnostics;
 
 class Program
 {
@@ -16,82 +17,137 @@ class Program
         ConstruirGrafo("grafo2.txt");
     }
 
-    // Método principal que construye el grafo
+    // Método principal que construye el grafo desde un archivo
     static void ConstruirGrafo(string nombreArchivo)
     {
-        // Usamos diccionario como lista de adyacencia
+        // Usamos un diccionario para representar la lista de adyacencia
+        // Decidimos en equipo usar esta estructura por su eficiencia
         Dictionary<string, List<string>> grafo = new Dictionary<string, List<string>>();
 
         try
         {
-            // Ruta profesional: apunta siempre a la carpeta del proyecto
+            // Construimos la ruta correcta hacia el archivo
+            // Esto asegura que funcione aunque el programa esté en bin/Debug
             string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\", nombreArchivo);
 
-            // Mostramos la ruta para verificar (esto ayuda en depuración)
-            //Console.WriteLine("Leyendo archivo desde: " + ruta);
-
-            // Validamos existencia del archivo
+            // Validamos si el archivo existe antes de leerlo
             if (!File.Exists(ruta))
             {
                 Console.WriteLine("❌ No se encontró el archivo: " + nombreArchivo);
                 return;
             }
 
-            // Leemos todas las líneas
+            // Leemos todas las líneas del archivo
             string[] lineas = File.ReadAllLines(ruta);
 
-            // Recorremos cada línea
+            // Recorremos cada línea del archivo
             foreach (string linea in lineas)
             {
-                // Evitamos líneas vacías
+                // Evitamos procesar líneas vacías
                 if (string.IsNullOrWhiteSpace(linea))
                     continue;
 
-                // Dividimos la línea (Ej: Quito-Guayaquil)
+                // Separamos los nodos usando "-"
                 string[] partes = linea.Split('-');
 
-                // Validamos formato correcto
+                // Validamos que tenga formato correcto (nodo1-nodo2)
                 if (partes.Length != 2)
                 {
                     Console.WriteLine("⚠ Línea inválida: " + linea);
                     continue;
                 }
 
+                // Limpiamos espacios en los nodos
                 string origen = partes[0].Trim();
                 string destino = partes[1].Trim();
 
-                // Agregamos nodos si no existen
+                // Agregamos el nodo origen si no existe
                 if (!grafo.ContainsKey(origen))
                     grafo[origen] = new List<string>();
 
+                // Agregamos el nodo destino si no existe
                 if (!grafo.ContainsKey(destino))
                     grafo[destino] = new List<string>();
 
-                // Grafo no dirigido (decisión del equipo)
+                // Como decidimos trabajar con grafo NO dirigido,
+                // agregamos la conexión en ambos sentidos
                 grafo[origen].Add(destino);
                 grafo[destino].Add(origen);
             }
 
-            // Mostramos resultados
+            // Mostramos el grafo en consola
             MostrarGrafo(grafo);
 
-            // Reporte adicional
+            // Mostramos el total de nodos
             Console.WriteLine("Total de nodos: " + grafo.Count);
+
+            // Generamos la representación gráfica con Graphviz
+            GenerarGrafico(grafo, nombreArchivo.Replace(".txt", ""));
         }
         catch (Exception ex)
         {
+            // Capturamos errores generales del sistema
             Console.WriteLine("Error: " + ex.Message);
         }
     }
 
-    // Método para imprimir el grafo
+    // Método para mostrar el grafo en consola
     static void MostrarGrafo(Dictionary<string, List<string>> grafo)
     {
-        // Recorremos cada nodo
+        // Recorremos cada nodo del diccionario
         foreach (var nodo in grafo)
         {
+            // Mostramos el nodo y sus conexiones
             Console.Write(nodo.Key + " -> ");
             Console.WriteLine(string.Join(", ", nodo.Value));
         }
+    }
+
+    // Método para generar el grafo visual usando Graphviz
+    static void GenerarGrafico(Dictionary<string, List<string>> grafo, string nombreArchivo)
+    {
+        // Creamos el contenido del archivo .dot
+        List<string> dot = new List<string>();
+
+        // Indicamos que es un grafo no dirigido
+        dot.Add("graph G {");
+
+        // Usamos HashSet para evitar duplicar conexiones
+        HashSet<string> conexiones = new HashSet<string>();
+
+        foreach (var nodo in grafo)
+        {
+            foreach (var vecino in nodo.Value)
+            {
+                string conexion = nodo.Key + "-" + vecino;
+                string inversa = vecino + "-" + nodo.Key;
+
+                // Evitamos duplicar conexiones (porque es no dirigido)
+                if (!conexiones.Contains(conexion) && !conexiones.Contains(inversa))
+                {
+                    dot.Add($"    \"{nodo.Key}\" -- \"{vecino}\";");
+                    conexiones.Add(conexion);
+                }
+            }
+        }
+
+        dot.Add("}");
+
+        // Guardamos el archivo .dot
+        string archivoDot = nombreArchivo + ".dot";
+        File.WriteAllLines(archivoDot, dot);
+
+        // Ejecutamos Graphviz para generar imagen PNG
+        string comando = $"dot -Tpng {archivoDot} -o {nombreArchivo}.png";
+
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "cmd",
+            Arguments = "/c " + comando,
+            CreateNoWindow = true,
+            UseShellExecute = false
+        });
+
+        Console.WriteLine("✔ Imagen generada: " + nombreArchivo + ".png");
     }
 }

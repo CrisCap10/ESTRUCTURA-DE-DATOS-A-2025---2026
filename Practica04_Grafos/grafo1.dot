@@ -1,0 +1,6 @@
+graph G {
+    "Quito" -- "Guayaquil";
+    "Quito" -- "Cuenca";
+    "Guayaquil" -- "Manta";
+    "Cuenca" -- "Loja";
+}
